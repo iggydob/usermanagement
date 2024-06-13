@@ -1,0 +1,27 @@
+quarkus:
+  application:
+    name: contacts
+  banner:
+    path: banner.txt
+  datasource:
+    db-kind: postgresql
+    username: postgres
+    password: c4f4128fa54047708c883f74df9b58f8
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/users
+  hibernate-orm:
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+    log:
+      sql: never
+      format: true
+    database:
+      generation: update
+  jdbc:
+    driver: org.postgresql.Driver
+  swagger-ui:
+    always-include: true
+    path: swagger-ui
+  smallrye-openapi:
+    path: /openapi
+  http:
+    port: 8080
