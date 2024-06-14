@@ -10,11 +10,11 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native-micro -t quarkus/usermanagement .
+# docker build -f src/main/docker/Dockerfile.native-micro -t quarkus/test-delete .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/usermanagement
+# docker run -i --rm -p 8080:8080 quarkus/test-delete
 #
 ###
 FROM quay.io/quarkus/quarkus-micro-image:2.0

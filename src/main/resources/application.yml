@@ -1,27 +1,18 @@
+server:
+  port: 8080
+
 quarkus:
   application:
-    name: contacts
-  banner:
-    path: banner.txt
+    name: usermanagement
   datasource:
-    db-kind: postgresql
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
-    jdbc:
-      url: jdbc:postgresql://localhost:5432/users
-  hibernate-orm:
-    dialect: org.hibernate.dialect.PostgreSQLDialect
-    log:
-      sql: never
-      format: true
-    database:
-      generation: update
-  jdbc:
-    driver: org.postgresql.Driver
-  swagger-ui:
-    always-include: true
-    path: swagger-ui
-  smallrye-openapi:
-    path: /openapi
-  http:
-    port: 8080
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/customer
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
