@@ -1,8 +1,4 @@
 quarkus:
-  application:
-    name: contacts
-  banner:
-    path: banner.txt
   datasource:
     db-kind: postgresql
     username: ${DB_USER}

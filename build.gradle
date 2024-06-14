@@ -12,6 +12,7 @@ dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-arc'
     testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.quarkus:quarkus-junit5-mockito:3.11.2'
     testImplementation 'io.rest-assured:rest-assured'
     implementation 'io.quarkus:quarkus-config-yaml'
     implementation 'io.quarkus:quarkus-resteasy'
@@ -53,3 +54,4 @@ compileJava {
 compileTestJava {
     options.encoding = 'UTF-8'
 }
+

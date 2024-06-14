@@ -39,4 +39,7 @@ public class User {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    public User(String john, String doe, String mail, String s, String s1, String s2, LocalDateTime now) {
+    }
 }
