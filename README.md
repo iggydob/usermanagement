@@ -1,81 +1,100 @@
-# usermanagement
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+# User Management REST API
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+This project is a User Management Tool build in Java and Quarkus. It provides functionalitiy to manage users, including creating and deleting users, and updating user information. The project has a layered architecture with distinct layers for presentation, business logic, and data access.
 
-## Running the application in dev mode
+## [API Reference](http://localhost:8080/q/swagger-ui)
 
-You can run your application in dev mode that enables live coding using:
 
-```shell script
-./gradlew quarkusDev
+#### Get all users if no query parameters added
+
+```http
+  GET /users
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `firstName`| `string` | **Optional**  |
+| `lastName`| `string` | **Optional**  |
+| `email`   | `string` | **Optional**   |
 
-## Packaging and running the application
+#### Get a user by email
 
-The application can be packaged using:
-
-```shell script
-./gradlew build
+```http
+  GET /users/${email}
 ```
 
-It produces the `quarkus-run.jar` file in the `build/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `build/quarkus-app/lib/` directory.
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email`   | `string` | **Required**        |
 
-The application is now runnable using `java -jar build/quarkus-app/quarkus-run.jar`.
+#### add(num1, num2)
 
-If you want to build an _über-jar_, execute the following command:
+Takes two numbers and returns the sum.
 
-```shell script
-./gradlew build -Dquarkus.package.jar.type=uber-jar
+#### Create a New User
+
+```http
+  POST /api/items/${id}
 ```
+**Required body**
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar build/*-runner.jar`.
+    {
+        "firstName": "string",
+        "lastName": "string",
+        "email": "string"
+    }
 
-## Creating a native executable
+#### Update existing user
 
-You can create a native executable using:
-
-```shell script
-./gradlew build -Dquarkus.native.enabled=true
+```http
+  PATCH users/update
 ```
+**Required body**
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+    {
+        "userId": 0,
+        "firstName": "string",
+        "lastName": "string",
+        "email": "string",
+        "address": "string",
+        "phone": "string",
+        "bio": "string"
+    }
 
-```shell script
-./gradlew build -Dquarkus.native.enabled=true -Dquarkus.native.container-build=true
+#### Delete a user
+
+```http
+  DELETE users/delete
 ```
+**Required body**
 
-You can then execute your native executable with: `./build/usermanagement-1.0-SNAPSHOT-runner`
+    {
+        "userId": 0,
+        "firstName": "string",
+        "lastName": "string",
+        "email": "string",
+        "address": "string",
+        "phone": "string",
+        "bio": "string"
+    }
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
+## Database
 
-## Related Guides
+The project uses an PostgreSQL database for storing user information. The database schema is defined in the `schema.sql` file, and sample data can be found in the `sample.sql` file.
 
-- REST ([guide](https://quarkus.io/guides/rest)): A Jakarta REST implementation utilizing build time processing and
-  Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on
-  it.
-- Hibernate ORM ([guide](https://quarkus.io/guides/hibernate-orm)): Define your persistent model with Hibernate ORM and
-  Jakarta Persistence
-- Hibernate Validator ([guide](https://quarkus.io/guides/validation)): Validate object properties (field, getter) and
-  method parameters for your beans (REST, CDI, Jakarta Persistence)
-- Reactive PostgreSQL client ([guide](https://quarkus.io/guides/reactive-sql-clients)): Connect to the PostgreSQL
-  database using the reactive pattern
-- JDBC Driver - PostgreSQL ([guide](https://quarkus.io/guides/datasource)): Connect to the PostgreSQL database via JDBC
+![img_1.png](img_1.png)
 
-## Provided Code
+## Used Technologies
 
-### Hibernate ORM
+- [Java](https://www.java.com/en/)
+- [Quarkus](https://quarkus.io/)
+- [Gradle](https://gradle.org/)
+- [Panache ORM](https://thorben-janssen.com/introduction-panache/)
+- [Hibernate](https://hibernate.org/orm/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Lombok](https://projectlombok.org/)
+- [Mockito](https://site.mockito.org/)
+- [Swagger](https://swagger.io/)
+- [MapStruct](https://mapstruct.org/)
 
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
