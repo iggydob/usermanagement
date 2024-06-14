@@ -1,0 +1,16 @@
+CREATE SCHEMA IF NOT EXISTS public;
+
+CREATE SEQUENCE users_seq START WITH 1 INCREMENT BY 50;
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    user_id    BIGSERIAL PRIMARY KEY,
+    first_name VARCHAR(50)  NOT NULL,
+    last_name  VARCHAR(50)  NOT NULL,
+    email      VARCHAR(100) NOT NULL,
+    address    VARCHAR(255) DEFAULT NULL,
+    phone      VARCHAR(30)  DEFAULT NULL,
+    bio        VARCHAR(255) DEFAULT NULL,
+    created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT UQ_Users_Email UNIQUE (email)
+);
