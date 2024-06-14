@@ -1,7 +1,6 @@
 package bg.energopro.service.implementation;
 
 import bg.energopro.domain.User;
-import bg.energopro.dto.UserDto;
 import bg.energopro.exceptions.EntityNotFoundException;
 import bg.energopro.form.UpdateForm;
 import bg.energopro.mapper.UserDtoMapper;
@@ -41,13 +40,6 @@ public class UserServiceImplTest {
         mockUser.setCreatedAt(LocalDateTime.now());
         return mockUser;
     }
-
-//    private static UserDto createUserDto() {
-//        UserDto mockUserDto = new UserDto();
-//        mockUserDto.setFirstName("John");
-//        mockUserDto.setLastName("Doe");
-//
-//    }
 
     @Test
     void when_getUserById_then_userShouldBeFound() {
