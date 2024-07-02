@@ -4,15 +4,15 @@ server:
 quarkus:
   application:
     name: usermanagement
+  banner:
+    path: banner.txt
   datasource:
+    db-kind: postgresql
     username: postgres
     password: postgres
-    url: jdbc:postgresql://localhost:5432/customer
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-    show-sql: true
+    jdbc:
+#      url: jdbc:postgresql://postgres:5432/usermanagement
+      url: jdbc:postgresql://host.docker.internal:5432/usermanagement
+  hibernate-orm:
+    database:
+      generation: drop-and-create

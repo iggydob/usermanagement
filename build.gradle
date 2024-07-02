@@ -18,6 +18,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-resteasy'
     implementation 'io.quarkus:quarkus-resteasy-jackson'
     implementation 'io.quarkus:quarkus-hibernate-validator'
+    implementation 'io.quarkus:quarkus-hibernate-orm'
+    implementation 'io.quarkus:quarkus-container-image-docker'
     implementation 'javax.transaction:javax.transaction-api:1.3'
 
     implementation 'io.quarkus:quarkus-jdbc-postgresql'
