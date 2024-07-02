@@ -1,0 +1,22 @@
+INSERT INTO public.users (user_id,first_name, last_name, email, address, phone, bio, created_at)
+VALUES (50, 'John', 'Doe', 'john.doe@example.com', '123 Maple Street, Springfield, IL', '555-1234', 'Loves hiking and outdoor activities.', CURRENT_TIMESTAMP),
+       (51, 'Jane', 'Smith', 'jane.smith@example.com', '456 Oak Avenue, Springfield, IL', '555-5678', 'Enjoys reading and writing.', CURRENT_TIMESTAMP),
+       (52, 'Emily', 'Johnson', 'emily.johnson@example.com', '789 Pine Road, Springfield, IL', '555-8765', 'Passionate about painting and art.', CURRENT_TIMESTAMP),
+       (53, 'Michael', 'Brown', 'michael.brown@example.com', '101 Cedar Street, Springfield, IL', '555-4321', 'Avid traveler and photographer.', CURRENT_TIMESTAMP),
+       (54, 'Sarah', 'Williams', 'sarah.williams@example.com', '202 Birch Lane, Springfield, IL', '555-9876', 'Music enthusiast and plays the guitar.', CURRENT_TIMESTAMP),
+       (55, 'Alice', 'Davis', 'alice.davis@example.com', '303 Elm Street, Springfield, IL', '555-1111', 'Yoga instructor and wellness coach.', CURRENT_TIMESTAMP),
+       (56, 'Robert', 'Miller', 'robert.miller@example.com', '404 Walnut Avenue, Springfield, IL', '555-2222', 'Tech enthusiast and software developer.', CURRENT_TIMESTAMP),
+       (57, 'Sophia', 'Wilson', 'sophia.wilson@example.com', '505 Chestnut Road, Springfield, IL', '555-3333', 'Gardening and nature lover.', CURRENT_TIMESTAMP),
+       (58, 'David', 'Moore', 'david.moore@example.com', '606 Pine Lane, Springfield, IL', '555-4444', 'History buff and museum curator.', CURRENT_TIMESTAMP),
+       (59, 'Olivia', 'Taylor', 'olivia.taylor@example.com', '707 Fir Street, Springfield, IL', '555-5555', 'Fashion designer and stylist.', CURRENT_TIMESTAMP),
+       (60, 'James', 'Anderson', 'james.anderson@example.com', '808 Cedar Avenue, Springfield, IL', '555-6666', 'Chef and culinary artist.', CURRENT_TIMESTAMP),
+       (61, 'Emma', 'Thomas', 'emma.thomas@example.com', '909 Maple Road, Springfield, IL', '555-7777', 'Fitness trainer and health advocate.', CURRENT_TIMESTAMP),
+       (62, 'William', 'Jackson', 'william.jackson@example.com', '1010 Oak Street, Springfield, IL', '555-8888', 'Engineer and robotics expert.', CURRENT_TIMESTAMP),
+       (63, 'Mia', 'White', 'mia.white@example.com', '1111 Birch Avenue, Springfield, IL', '555-9999', 'Ballet dancer and choreographer.', CURRENT_TIMESTAMP),
+       (64, 'Ethan', 'Harris', 'ethan.harris@example.com', '1212 Pine Lane, Springfield, IL', '555-1010', 'Journalist and travel writer.', CURRENT_TIMESTAMP),
+       (65, 'Ava', 'Martin', 'ava.martin@example.com', '1313 Cedar Street, Springfield, IL', '555-1112', 'Environmental scientist and activist.', CURRENT_TIMESTAMP),
+       (66, 'Benjamin', 'Martinez', 'benjamin.martinez@example.com', '1414 Maple Avenue, Springfield, IL', '555-1212', 'Graphic designer and illustrator.', CURRENT_TIMESTAMP),
+       (67, 'Isabella', 'Garcia', 'isabella.garcia@example.com', '1515 Elm Road, Springfield, IL', '555-1313', 'Psychologist and mental health advocate.', CURRENT_TIMESTAMP),
+       (68, 'Daniel', 'Martinez', 'daniel.martinez@example.com', '1616 Walnut Street, Springfield, IL', '555-1414', 'Musician and composer.', CURRENT_TIMESTAMP),
+       (69, 'Charlotte', 'Martinez', 'charlotte.martinez@example.com', '1717 Chestnut Avenue, Springfield, IL', '555-1515', 'Architect and urban planner.', CURRENT_TIMESTAMP);
+
