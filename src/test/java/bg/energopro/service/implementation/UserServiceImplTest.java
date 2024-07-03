@@ -1,7 +1,9 @@
 package bg.energopro.service.implementation;
 
+
 import bg.energopro.domain.User;
-import bg.energopro.exceptions.EntityNotFoundException;
+import bg.energopro.dto.UserDto;
+import bg.energopro.exceptions.EntityDuplicateException;
 import bg.energopro.form.UpdateForm;
 import bg.energopro.mapper.UserDtoMapper;
 import bg.energopro.repository.implementation.UserRepositoryImpl;
@@ -9,103 +11,90 @@ import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.*;
-
 
 @QuarkusTest
 public class UserServiceImplTest {
 
     @InjectMock
-    UserServiceImpl mockService;
+    UserRepositoryImpl mockUserRepository;
 
-    @InjectMock
-    UserRepositoryImpl mockRepository;
+    @Inject
+    UserServiceImpl mockUserService;
 
     @Inject
     UserDtoMapper userDtoMapper;
 
-    private static User createMockUser() {
-        User mockUser = new User();
-        mockUser.setUserId(1L);
-        mockUser.setFirstName("John");
-        mockUser.setLastName("Doe");
-        mockUser.setEmail("john.doe@example.com");
-        mockUser.setAddress("555-1234");
-        mockUser.setBio("Loves hiking and outdoor activities.");
-        mockUser.setCreatedAt(LocalDateTime.now());
-        return mockUser;
-    }
-
     @Test
-    void when_getUserById_then_userShouldBeFound() {
+    void getUserByEmail_Should_getUserDtoWithMatchingEmail() {
         // Arrange
-        User sourceUser = createMockUser();
-        User targetUser = createMockUser();
+        String email = "test@example.com";
+        User user = new User();
+        user.setEmail(email);
+        Mockito.when(mockUserRepository.getUserByEmail(email)).thenReturn(user);
 
         // Act
-        when(mockRepository.getUserById(1L)).thenReturn(targetUser);
+        User result = userDtoMapper.mapToUser(mockUserService.getUserByEmail(email));
 
-        // Act, Assert
-        assertNotNull(targetUser);
-        assertEquals(targetUser, sourceUser);
+        // Assert
+        assertEquals(email, result.getEmail());
+        Mockito.verify(mockUserRepository).getUserByEmail(email);
     }
 
     @Test
     void createUser_Should_ThrowEntityDuplicateException_When_UserWithSameEmailExists() {
         // Arrange
-        User existingUser = createMockUser();
-
-        // Act, Assert
-        when(mockService.createUser(createMockUser()))
-                .thenThrow(new EntityNotFoundException("User", "e-mail", existingUser.getEmail()));
-    }
-
-    @Test
-    void createUser_Should_callRepository_When() {
-        // Arrange
-        User newUser = createMockUser();
+        User existingUser = new User();
+        existingUser.setEmail("example@mock.com");
 
         // Act
-        mockService.createUser(newUser);
+        User newUser = new User();
+        newUser.setUserId(1L);
+        existingUser.setEmail("example@mock.com");
 
         // Assert
-        verify(mockRepository, times(1)).createUser(newUser);
+        Mockito.when(mockUserService.createUser(newUser))
+                .thenThrow(new EntityDuplicateException("User", "e-mail", existingUser.getEmail()));
+
     }
 
     @Test
-    void update_Should_UpdateUserDetails_When_UserDetailAreNotNull() {
+    void updateUserDetails_ShouldCallRepository_when_userIsUpdated() {
         // Arrange
-        User actingUser = createMockUser();
-        User dummyUser = createMockUser();
-        dummyUser.setUserId(2L);
-        dummyUser.setFirstName("Jane");
+//        UserDto userDto = userDtoMapper.mapToUserDto(existingUser);
+        User existingUser = new User();
+        existingUser.setUserId(1L);
+//        existingUser.setFirstName("firstName");
+//        existingUser.setLastName("lastName");
+        existingUser.setEmail("example@mock.com");
+//        existingUser.setAddress("San Francisco, CA, USA");
+//        existingUser.setBio("Junior Java Developer");
+//        existingUser.setCreatedAt(LocalDateTime.parse("2020-07-03T17:54:07"));
 
         UpdateForm updateForm = new UpdateForm();
-        updateForm.setUserId(1L);
-        updateForm.setFirstName("Jane");
+        updateForm.setPhone("0888123456");
 
         // Act
-        mockService.updateUserDetails(updateForm);
+        mockUserService.updateUserDetails(updateForm);
 
         // Assert
-        assertEquals(actingUser.getFirstName(), dummyUser.getFirstName());
-        verify(mockRepository, times(1)).updateUserDetails(updateForm);
+        Mockito.verify(mockUserRepository, Mockito.times(1)).updateUserDetails(updateForm);
     }
 
     @Test
-    void deleteUser_ShouldCallRepository_When_UserIsDeleted() {
-        // Act
-        User mockUser = createMockUser();
+    void deleteUser_ShouldCallRepository_when_userIsDeleted(){
+        // Arrange
+        User existingUser = new User();
+        existingUser.setUserId(1L);
 
         // Act
-        mockService.deleteUser(userDtoMapper.mapToUserDto(mockUser));
+        mockUserService.deleteUser(userDtoMapper.mapToUserDto(existingUser));
 
         // Assert
-        verify(mockRepository, times(1)).deleteUser(mockUser);
+        Mockito.verify(mockUserRepository, Mockito.times(1)).deleteUser(Mockito.any(User.class));
     }
 }
